@@ -1,0 +1,46 @@
+    Answer these questions:
+i) Describe how each hash function works. Be sure to show how each hash function
+    (together with their success at reducing collisions) as you arrived at your best one.
+ii) How does the performance of each hash function differ?
+iii) Which one works best for the general case and for the specific case.
+iv) Do even, odd, or prime number table length make a difference with teh same hash function?
+
+    Solution:
+After many runs with varying sizes, this is what I noticed.
+
+For both functions used, the performance was fairly decently with the longest collision length less
+than or equal to 7, but I noticed that the second hash function (hash2()) works better with shorted
+collision length, and small average collision length when used for the specific case. and hash1()
+works better for the general case.
+
+The first hash function (hash1()) uses each character of each "token", multiplies it by the length
+of the token, and modulo the total number of characters by the size of the hash table. This ensured
+that the number generated would be within bounds and at random. This also helped "evenly" distribute
+the keys in the table, but since the size of the table for the general case is smaller and there are
+more tokens to be added,,it made it more likely for collision to occur since the value is not so random
+because it depends on the length of each token, so the values are likely to be close to each other.
+
+The second hash function (hash2()) uses a prime number to ensure that the key is unique and
+distinct each time, which meant that it would be less likely for collision to occur.
+This function also uses the length of the token and multiplies a different character of each token every
+time the loop goes through. This helped with the uniqueness of the value that would be generated.
+
+The first hash function (hash1()) works better for the general case because it allows us to store
+items more "evenly" and sometimes compressed, and similar items are stored in the same key, but because
+I am using every character of the token, they givens it some uniqueness, producing less collision.
+
+The second hash function (hash2()) for better for the specific case because we are using a more
+unique approach when adding items to the table, and the keys are more spread out. And because the size is
+larger, there would likely be fewer collisions.
+
+Both hash functions are efficient and makes it easier to retrieve or delete based on their unique key.
+
+For both the general case and specific case hash function, using an even number table length is
+typically a bad idea because we end up with odd indices and the keys are not distributed properly.
+There is a high chance of collision and empty indices. I tried to minimize this by generating a random
+prime number within bounds. When an odd or prime number table length was used, the keys were distributed
+"correctly" and less collision. To improve performance for the general case, I would make the size of the
+hash table larger.
+
+For both cases, the collision length is less than or equal 7, which shows that the chosen function worked
+better for that case, and they are "good" functions.
